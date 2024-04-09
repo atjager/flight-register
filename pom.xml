@@ -16,7 +16,9 @@
     <properties>
         <java.version>17</java.version>
         <sevntu-checkstyle.version>1.42.0</sevntu-checkstyle.version>
-        <checkstyledir>${settings.localRepository}/com/github/sevntu-checkstyle/sevntu-checks/${sevntu-checkstyle.version}/</checkstyledir>
+        <checkstyledir>
+            ${settings.localRepository}/com/github/sevntu-checkstyle/sevntu-checks/${sevntu-checkstyle.version}/
+        </checkstyledir>
         <checkstylefile>sevntu-checks-${sevntu-checkstyle.version}.jar</checkstylefile>
     </properties>
     <dependencies>
@@ -80,7 +82,7 @@
                 <configuration>
                     <configLocation>${basedir}/checks.xml</configLocation>
                     <includeTestSourceDirectory>true</includeTestSourceDirectory>
-                    <encoding>UTF-8</encoding>
+                    <!--                    <encoding>UTF-8</encoding>-->
                     <enableRulesSummary>false</enableRulesSummary>
                 </configuration>
                 <executions>
