@@ -10,4 +10,6 @@ import java.util.Optional;
 public interface AirportRepository extends JpaRepository<Airport, String> {
 
     Optional<Airport> findByName(String name);
+
+    void deleteById(String name);
 }

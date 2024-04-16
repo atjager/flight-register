@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.UuidGenerator;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Data
@@ -30,5 +30,5 @@ public class Flight extends BaseEntity {
     private Airport destination;
 
     @Column(name = "departure_time", nullable = false)
-    private Date departureTime;
+    private LocalDateTime departureTime;
 }
