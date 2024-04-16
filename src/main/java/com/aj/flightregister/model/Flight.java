@@ -1,7 +1,9 @@
 package com.aj.flightregister.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.UuidGenerator;
 
 import java.util.Date;
@@ -10,6 +12,8 @@ import java.util.UUID;
 @Data
 @Table
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 public class Flight extends BaseEntity {
 
     @Id
@@ -22,7 +26,7 @@ public class Flight extends BaseEntity {
     private Airport origin;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @Column(name = "destination", nullable = false)
+    @JoinColumn(name = "destination", nullable = false)
     private Airport destination;
 
     @Column(name = "departure_time", nullable = false)
