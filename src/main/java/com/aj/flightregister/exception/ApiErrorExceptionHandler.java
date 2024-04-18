@@ -38,6 +38,12 @@ public class ApiErrorExceptionHandler {
         return error(exc);
     }
 
+    @ResponseStatus(HttpStatus.LOCKED)
+    @ExceptionHandler(LockedException.class)
+    public ResponseEntity<ApiErrorObj> handleApiErrorException423(LockedException exc) {
+        return error(exc);
+    }
+
     private ResponseEntity<ApiErrorObj> error(ApiErrorException exc) {
         return new ResponseEntity<>(new ApiErrorObj(exc.getErrorName(), exc.getErrorMessage()), exc.getHttpStatus());
     }
