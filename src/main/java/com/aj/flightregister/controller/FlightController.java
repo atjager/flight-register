@@ -1,12 +1,13 @@
 package com.aj.flightregister.controller;
 
+import com.aj.flightregister.exception.ItemNotFoundException;
 import com.aj.flightregister.model.Flight;
 import com.aj.flightregister.model.FlightDTO;
 import com.aj.flightregister.service.FlightService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.text.ParseException;
 import java.util.List;
 
 @RestController
@@ -17,7 +18,7 @@ public class FlightController {
     private final FlightService flightService;
 
     @PostMapping("")
-    private Flight createFlight(@RequestBody FlightDTO flight) {
+    private Flight createFlight(@RequestBody FlightDTO flight) throws ItemNotFoundException {
         return flightService.saveFlight(flight);
     }
 
@@ -27,17 +28,18 @@ public class FlightController {
     }
 
     @GetMapping("origin/{origin}")
-    private List<Flight> getFlightsByOrigin(@PathVariable String origin) {
+    private List<Flight> getFlightsByOrigin(@PathVariable String origin) throws ItemNotFoundException {
         return flightService.getFlightsByOrigin(origin);
     }
 
     @GetMapping("departure-time/{time}")
-    private List<Flight> getFlightsByDepartureTime(@PathVariable String time) throws ParseException {
+    private List<Flight> getFlightsByDepartureTime(@PathVariable String time) throws ItemNotFoundException {
         return flightService.getFlightByDepartureTime(time);
     }
 
-    //    @GetMapping("destination/{destination}")
-    //    private List<Flight> getFlightsByDestination(@PathVariable String destination) {
-    //        return flightService.getFlightsByDestination(destination);
-    //    }
+    @DeleteMapping("{id}")
+    private ResponseEntity<String> deleteFlight(@PathVariable String id) throws ItemNotFoundException {
+        flightService.deleteFlight(id);
+        return ResponseEntity.ok().build();
+    }
 }

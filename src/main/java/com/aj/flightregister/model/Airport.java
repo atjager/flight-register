@@ -4,6 +4,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -16,14 +17,14 @@ import java.util.Date;
 public class Airport extends BaseEntity {
 
     @Id
-    @Column(name = "name", nullable = false)
+    @Column(name = "name", nullable = false, unique = true)
     private String name;
 
     @Column(name = "city", nullable = false)
     private String city;
 
     @Column(name = "gps_coordinates", nullable = false)
-    //@Pattern(regexp = "^(-?\\d+(\\.\\d+)?),\\s*(-?\\d+(\\.\\d+)?)$")
+    @Pattern(regexp = "^(-?\\d+(\\.\\d+)?),\\s*(-?\\d+(\\.\\d+)?)$")
     private String gpsCoordinates;
 
     public Airport(String name, String city, String gpsCoordinates, Date created) {

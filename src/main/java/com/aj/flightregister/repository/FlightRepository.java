@@ -20,5 +20,4 @@ public interface FlightRepository extends JpaRepository<Flight, UUID> {
 
     List<Flight> findByOrigin_Name(String origin);
 
-    //    List<Flight> findByDestination_Name(String origin);
 }
