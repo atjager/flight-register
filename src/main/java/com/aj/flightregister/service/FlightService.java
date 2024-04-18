@@ -42,10 +42,6 @@ public class FlightService {
         return flights;
     }
 
-    //    public List<Flight> getFlightsByDestination(String origin) {
-    //        return flightRepository.findByDestination_Name(origin);
-    //    }
-
     public List<Flight> getFlightByDepartureTime(String time) throws ItemNotFoundException {
         //SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
         List<Flight> flights = flightRepository.getFlightByDepartureTime(LocalDateTime.parse(time));
