@@ -19,7 +19,7 @@ mvn clean install
 3. The app is now accessible on port 8081.
 
 ---
-### Swagger API docs (if you run this on localhost)
+### Swagger API docs (if you run this on localhost in dev environment)
 
 [Swagger UI](http://localhost:8081/swagger-ui/index.html)
 
