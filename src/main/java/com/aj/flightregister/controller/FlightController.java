@@ -38,7 +38,7 @@ public class FlightController {
     }
 
     @DeleteMapping("{id}")
-    private ResponseEntity<String> deleteFlight(@PathVariable String id) throws ItemNotFoundException {
+    private ResponseEntity<String> deleteFlight(@PathVariable String id) {
         flightService.deleteFlight(id);
         return ResponseEntity.ok().build();
     }

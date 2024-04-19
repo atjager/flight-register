@@ -50,13 +50,7 @@ public class ApiErrorExceptionHandler {
     @ResponseStatus(HttpStatus.LOCKED)
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity<ApiErrorObj> handleApiErrorException423(DataIntegrityViolationException exc) {
-        return new ResponseEntity<>(new ApiErrorObj("The given record cannot be deleted. It is may used by other resources.", exc.toString()), HttpStatus.LOCKED);
-    }
-
-    @ResponseStatus(HttpStatus.LOCKED)
-    @ExceptionHandler(LockedException.class)
-    public ResponseEntity<ApiErrorObj> handleApiErrorException423(LockedException exc) {
-        return error(exc);
+        return new ResponseEntity<>(new ApiErrorObj("The given record cannot be deleted. It is may used by others", exc.toString()), HttpStatus.LOCKED);
     }
 
     private ResponseEntity<ApiErrorObj> error(ApiErrorException exc) {

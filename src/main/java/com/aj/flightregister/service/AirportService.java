@@ -19,8 +19,7 @@ public class AirportService {
     }
 
     public Airport getAirport(String name) {
-        return airportRepository
-                .findByName(name).get();
+        return airportRepository.findByName(name).get();
     }
 
     public Airport saveAirport(Airport airport) throws ItemAlreadyExistsException {

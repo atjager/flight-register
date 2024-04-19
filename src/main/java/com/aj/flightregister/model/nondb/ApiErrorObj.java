@@ -7,7 +7,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class ApiErrorObj {
 
-    String
+    private String
             errorName,
             errorMessage;
 

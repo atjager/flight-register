@@ -4,7 +4,6 @@ import org.springframework.http.HttpStatus;
 
 public class ItemAlreadyExistsException extends ApiErrorException {
 
-
     public ItemAlreadyExistsException(String string, String valueOf) {
         super(string, valueOf);
     }

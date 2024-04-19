@@ -1,8 +1,6 @@
 package com.aj.flightregister.controller;
 
 import com.aj.flightregister.exception.ItemAlreadyExistsException;
-import com.aj.flightregister.exception.ItemNotFoundException;
-import com.aj.flightregister.exception.LockedException;
 import com.aj.flightregister.model.Airport;
 import com.aj.flightregister.service.AirportService;
 import jakarta.validation.Valid;
@@ -25,7 +23,7 @@ public class AirportController {
     }
 
     @GetMapping("{id}")
-    private Airport getAirport(@PathVariable String id) throws ItemNotFoundException {
+    private Airport getAirport(@PathVariable String id) {
         return airportService.getAirport(id);
     }
 
@@ -34,14 +32,13 @@ public class AirportController {
         return airportService.saveAirport(airport);
     }
 
-
     @PutMapping("")
-    private Airport updateAirport(@Valid @RequestBody Airport airport) throws ItemNotFoundException {
+    private Airport updateAirport(@Valid @RequestBody Airport airport) {
         return airportService.updateAirport(airport);
     }
 
     @DeleteMapping("{id}")
-    private ResponseEntity<String> deleteAirport(@PathVariable String id) throws ItemNotFoundException, LockedException {
+    private ResponseEntity<String> deleteAirport(@PathVariable String id) {
         airportService.deleteAirport(id);
         return ResponseEntity.ok().build();
     }
