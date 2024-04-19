@@ -32,7 +32,7 @@ public class ApiErrorExceptionHandler {
         for (FieldError error : validationList) {
             errorMessage.append(String.format("%s %s. ", error.getField(), error.getDefaultMessage()));
         }
-        return new ResponseEntity<>(new ApiErrorObj("validationError", errorMessage.toString()), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(new ApiErrorObj("Validation error", errorMessage.toString()), HttpStatus.BAD_REQUEST);
     }
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
@@ -43,7 +43,7 @@ public class ApiErrorExceptionHandler {
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(NoSuchElementException.class)
     public ResponseEntity<ApiErrorObj> handleApiErrorException404(NoSuchElementException exc) {
-        return new ResponseEntity<>(new ApiErrorObj("The given record cannot be found", exc.toString()), HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(new ApiErrorObj("Not found", exc.toString()), HttpStatus.NOT_FOUND);
     }
 
     @ResponseStatus(HttpStatus.LOCKED)

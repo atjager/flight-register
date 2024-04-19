@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Data
-@Table
+@Table(name = "flights")
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor

@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 import java.util.Date;
 
 @Data
-@Table
+@Table(name = "airports")
 @Entity
 @NoArgsConstructor
 public class Airport extends BaseEntity {

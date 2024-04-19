@@ -34,7 +34,7 @@ public class FlightController {
 
     @GetMapping("departure-time/{time}")
     private List<Flight> getFlightsByDepartureTime(@PathVariable String time) throws ItemNotFoundException {
-        return flightService.getFlightByDepartureTime(time);
+        return flightService.getFlightsByDepartureTime(time);
     }
 
     @DeleteMapping("{id}")

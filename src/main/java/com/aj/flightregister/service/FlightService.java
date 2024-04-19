@@ -42,13 +42,13 @@ public class FlightService {
         return flights;
     }
 
-    public List<Flight> getFlightByDepartureTime(String time) throws ItemNotFoundException {
+    public List<Flight> getFlightsByDepartureTime(String time) throws ItemNotFoundException {
         List<Flight> flights = flightRepository.getFlightByDepartureTime(LocalDateTime.parse(time));
         if (flights.isEmpty()) throw new ItemNotFoundException("Not found", time);
         return flights;
     }
 
-    public void deleteFlight(String uuid) throws ItemNotFoundException {
+    public void deleteFlight(String uuid) {
         flightRepository.delete(flightRepository.findById(UUID.fromString(uuid)).get());
     }
 }
