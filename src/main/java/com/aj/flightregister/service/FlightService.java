@@ -1,10 +1,12 @@
 package com.aj.flightregister.service;
 
 import com.aj.flightregister.exception.ItemNotFoundException;
+import com.aj.flightregister.model.Airport;
 import com.aj.flightregister.model.Flight;
 import com.aj.flightregister.model.FlightDTO;
-import com.aj.flightregister.repository.AirportRepository;
 import com.aj.flightregister.repository.FlightRepository;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,18 +20,16 @@ public class FlightService {
 
     private final FlightRepository flightRepository;
 
-    private final AirportRepository airportRepository;
+    @PersistenceContext
+    private EntityManager entityManager;
 
     public Flight saveFlight(FlightDTO flightDTO) throws ItemNotFoundException {
-        Flight flight = new Flight();
-        flight.setOrigin(
-                airportRepository.findByName(flightDTO.getOrigin())
-                        .orElseThrow(() -> new ItemNotFoundException("Not found", flightDTO.getOrigin())));
-        flight.setDestination(
-                airportRepository.findByName(flightDTO.getDestination())
-                        .orElseThrow(() -> new ItemNotFoundException("Not found", flightDTO.getDestination())));
-        flight.setDepartureTime(flightDTO.getDepartureTime());
-        return flightRepository.save(flight);
+        Airport origin = entityManager.find(Airport.class, flightDTO.getOrigin());
+        Airport destination = entityManager.find(Airport.class, flightDTO.getDestination());
+        if (origin == null || destination == null) {
+            throw new ItemNotFoundException("Not found", flightDTO.getOrigin() + " or " + flightDTO.getDestination());
+        }
+        return flightRepository.save(Flight.builder().origin(origin).destination(destination).departureTime(flightDTO.getDepartureTime()).build());
     }
 
     public List<Flight> getFlights() {
@@ -43,16 +43,12 @@ public class FlightService {
     }
 
     public List<Flight> getFlightByDepartureTime(String time) throws ItemNotFoundException {
-        //SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
         List<Flight> flights = flightRepository.getFlightByDepartureTime(LocalDateTime.parse(time));
         if (flights.isEmpty()) throw new ItemNotFoundException("Not found", time);
         return flights;
     }
 
     public void deleteFlight(String uuid) throws ItemNotFoundException {
-        flightRepository.delete(
-                flightRepository
-                        .findById(UUID.fromString(uuid))
-                        .orElseThrow(() -> new ItemNotFoundException("Not found", uuid)));
+        flightRepository.delete(flightRepository.findById(UUID.fromString(uuid)).get());
     }
 }
