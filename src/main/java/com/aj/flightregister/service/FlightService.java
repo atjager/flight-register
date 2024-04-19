@@ -3,10 +3,9 @@ package com.aj.flightregister.service;
 import com.aj.flightregister.exception.ItemNotFoundException;
 import com.aj.flightregister.model.Airport;
 import com.aj.flightregister.model.Flight;
-import com.aj.flightregister.model.FlightDTO;
+import com.aj.flightregister.model.nondb.FlightDTO;
 import com.aj.flightregister.repository.FlightRepository;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -23,8 +22,7 @@ public class FlightService {
 
     private final FlightRepository flightRepository;
 
-    @PersistenceContext
-    private EntityManager entityManager;
+    private final EntityManager entityManager;
 
     /**
      * Writes a new Flight object to the table.

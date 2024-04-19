@@ -2,7 +2,7 @@ package com.aj.flightregister.controller;
 
 import com.aj.flightregister.exception.ItemNotFoundException;
 import com.aj.flightregister.model.Flight;
-import com.aj.flightregister.model.FlightDTO;
+import com.aj.flightregister.model.nondb.FlightDTO;
 import com.aj.flightregister.service.FlightService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

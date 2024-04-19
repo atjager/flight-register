@@ -1,4 +1,4 @@
-package com.aj.flightregister.model;
+package com.aj.flightregister.model.nondb;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
