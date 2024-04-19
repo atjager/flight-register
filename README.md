@@ -1,13 +1,13 @@
 # flight-register
 
 A simple example project with Java, Postgres and Docker.
-<!-- BUILDING FROM SOURCE -->
 ## Building from source
 
 ### Prerequisites
 
 * mvn
 * jdk 17
+* docker
 
 ```shell
 mvn clean install
@@ -19,7 +19,7 @@ mvn clean install
 3. The app is now accessible on port 8081.
 
 ---
-#### Swagger API docs (if you run this on localhost)
+### Swagger API docs (if you run this on localhost)
 
 [Swagger UI](http://localhost:8081/swagger-ui/index.html)
 
