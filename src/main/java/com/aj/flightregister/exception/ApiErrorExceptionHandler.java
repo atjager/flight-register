@@ -40,6 +40,7 @@ public class ApiErrorExceptionHandler {
     public ResponseEntity<ApiErrorObj> handleApiErrorException404(ItemNotFoundException exc) {
         return error(exc);
     }
+
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(NoSuchElementException.class)
     public ResponseEntity<ApiErrorObj> handleApiErrorException404(NoSuchElementException exc) {
@@ -48,7 +49,7 @@ public class ApiErrorExceptionHandler {
 
     @ResponseStatus(HttpStatus.LOCKED)
     @ExceptionHandler(DataIntegrityViolationException.class)
-    public ResponseEntity<ApiErrorObj> handleApiErrorException423 (DataIntegrityViolationException exc) {
+    public ResponseEntity<ApiErrorObj> handleApiErrorException423(DataIntegrityViolationException exc) {
         return new ResponseEntity<>(new ApiErrorObj("The given record cannot be deleted. It is may used by other resources.", exc.toString()), HttpStatus.LOCKED);
     }
 
