@@ -19,13 +19,13 @@ public class ApiErrorExceptionHandler {
 
     @ExceptionHandler(ItemAlreadyExistsException.class)
     @ResponseStatus(HttpStatus.CONFLICT)
-    public ResponseEntity<ApiErrorObj> handleApiErrorException409(ItemAlreadyExistsException exc) {
+    private ResponseEntity<ApiErrorObj> handleApiErrorException409(ItemAlreadyExistsException exc) {
         return error(exc);
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<ApiErrorObj> handle(MethodArgumentNotValidException exc) {
+    private ResponseEntity<ApiErrorObj> handle(MethodArgumentNotValidException exc) {
         var validationList = exc.getFieldErrors();
 
         StringBuilder errorMessage = new StringBuilder();
@@ -37,19 +37,19 @@ public class ApiErrorExceptionHandler {
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(ItemNotFoundException.class)
-    public ResponseEntity<ApiErrorObj> handleApiErrorException404(ItemNotFoundException exc) {
+    private ResponseEntity<ApiErrorObj> handleApiErrorException404(ItemNotFoundException exc) {
         return error(exc);
     }
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(NoSuchElementException.class)
-    public ResponseEntity<ApiErrorObj> handleApiErrorException404(NoSuchElementException exc) {
+    private ResponseEntity<ApiErrorObj> handleApiErrorException404(NoSuchElementException exc) {
         return new ResponseEntity<>(new ApiErrorObj("Not found", exc.toString()), HttpStatus.NOT_FOUND);
     }
 
     @ResponseStatus(HttpStatus.LOCKED)
     @ExceptionHandler(DataIntegrityViolationException.class)
-    public ResponseEntity<ApiErrorObj> handleApiErrorException423(DataIntegrityViolationException exc) {
+    private ResponseEntity<ApiErrorObj> handleApiErrorException423(DataIntegrityViolationException exc) {
         return new ResponseEntity<>(new ApiErrorObj("The given record cannot be deleted. It is may used by others", exc.toString()), HttpStatus.LOCKED);
     }
 
