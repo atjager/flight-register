@@ -35,3 +35,6 @@ build/
 ### MAC ###
 .DS_STORE
 
+### VM ###
+vm/flight-register-0.0.1.jar
+vm/postgres_data

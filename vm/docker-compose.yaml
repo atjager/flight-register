@@ -1,0 +1,24 @@
+services:
+  postgres_db:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_DB: flight-register
+      POSTGRES_USER: flight-user
+      POSTGRES_PASSWORD: flight-password
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
+
+  java_app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    depends_on:
+      - postgres_db
+    ports:
+      - "8081:8081"
+    environment:
+      POSTGRES_URL: postgresql://postgres_db:5432/flight-register
+      POSTGRES_USERNAME: flight-user
+      POSTGRES_PASSWORD: flight-password
